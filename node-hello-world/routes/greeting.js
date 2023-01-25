@@ -6,8 +6,11 @@ router.get('/', function(req, res, next) {
 
   const INFO = process.env.INFO || "Hello, world!";
 
+  console.log("ENV",process.env)
+  console.log("INFO",process.env.INFO)
+
   res.send(
-    { "greeting": INFO }
+    { "greeting info": INFO }
   );
 });
 
