@@ -1,3 +1,4 @@
 node-parent/node_modules/*
 node-child/node_modules/*
-
+node-child/package-lock.json
+node-parent/package-lock.json
