@@ -1,2 +1,3 @@
-node-hello-world/node_modules/*
+node-parent/node_modules/*
+node-child/node_modules/*
 
