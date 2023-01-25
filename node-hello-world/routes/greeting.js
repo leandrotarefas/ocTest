@@ -3,8 +3,11 @@ var router = express.Router();
 
 /* GET greeting */
 router.get('/', function(req, res, next) {
+
+  const INFO = process.env.INFO || "Hello, world!";
+
   res.send(
-    { "greeting": "Hello, world!" }
+    { "greeting": INFO }
   );
 });
 
