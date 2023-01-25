@@ -1,30 +1,30 @@
 var express = require('express');
 var router = express.Router();
+const { execSync } = require("child_process");
+const process = require("process");
 
 router.post('/', function(req, res, next) {
 
     const {app_name, parent_url} = req.body;
-
-    const { exec } = require("child_process");
+    
     const repositorio = `oc new-app https://github.com/leandrotarefas/ocTest`;
     const parametros = `--context-dir=node-child --name=${app_name} --strategy=source`;
     const envs = `-e PARENT_URL=${parent_url}`;
 
-    const comando = `${repositorio} ${parametros} ${envs}`;
+    const comandoDeCriacao = `${repositorio} ${parametros} ${envs}`;
 
-    exec(comando, (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-    });
+    console.log("Dando cria a um novo pod!");
+    console.log("comando=>", comandoDeCriacao);
+    process.stdout.write(execSync(comandoDeCriacao).toString());
+    console.log("Pod criado!");
 
-  res.json({msg:"Procriando!"});
+    const comandoDeLiberacaoDeRota = `oc expose svc/${app_name}`;
+    console.log("Criando nova rota!");
+    console.log("comando=>", comandoDeLiberacaoDeRota);
+    process.stdout.write(execSync(comandoDeLiberacaoDeRota).toString());
+    console.log("Rota liberada para o pod!");
+    
+    res.json({msg:"Feito!"});
 });
 
 module.exports = router;
