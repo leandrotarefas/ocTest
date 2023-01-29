@@ -13,6 +13,4 @@ RUN tar -xvf openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 
 COPY . .
 
-ENV PATH="${PATH}:/usr/src/app"
-
-RUN echo GIGAAAAAAAAAAAAAAAAAAAAAAAA
+ENV PATH="${PATH}:/opt/app-root/src"
