@@ -3,6 +3,7 @@ FROM ubuntu:22.04
 WORKDIR /usr/src/app
 
 ENV NODE_ENV production
+RUN chmod +x configOC.sh
 
 # install openshift client on container
 COPY openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz ./
