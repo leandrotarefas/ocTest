@@ -6,7 +6,8 @@ LABEL maintainer="Leandro M Melo"
 # Atualiza a imagem com os pacotes
 RUN apt-get update && apt-get upgrade -y
 
-RUN /configOC.sh
+RUN chmod +x configOC.sh
+RUN ./configOC.sh
 
 RUN apt -y update
 RUN apt -y install nodejs
