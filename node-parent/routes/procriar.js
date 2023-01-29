@@ -7,6 +7,12 @@ router.post('/', function(req, res, next) {
 
     const {app_name, parent_url, token, server} = req.body;
     
+    const extractPath = `export PATH=\"$PATH:/opt/app-root/src\"`
+    console.log("Exporting PATH...");
+    console.log("comando=>", extractPath);
+    process.stdout.write(execSync(extractPath).toString());
+    console.log("======================");
+    
     const comandoDeLogin = `oc login --token=${token} --server=${server}`
     console.log("Fazendo login via OC...");
     console.log("comando=>", comandoDeLogin);
