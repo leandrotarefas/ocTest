@@ -11,8 +11,7 @@ WORKDIR /usr/src/app
 #COPY openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz ./
 #RUN tar -xvf openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 #RUN mv oc kubectl /usr/local/bin/
-ADD target/test_app.tar.gz ./
-RUN rm -rf ./openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
+ADD openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz ./
 
 RUN apt -y update
 RUN apt -y install nodejs
@@ -25,6 +24,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+RUN rm -rf openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 
 EXPOSE 8080
 
