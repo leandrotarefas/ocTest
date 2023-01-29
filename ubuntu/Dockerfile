@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM node:alpine
 
 # define o mantenedor da imagem
 LABEL maintainer="Leandro M Melo"
