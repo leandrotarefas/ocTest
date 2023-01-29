@@ -1,29 +1,18 @@
-FROM node:alpine
+FROM ubuntu:22.04
 
-# define o mantenedor da imagem
-LABEL maintainer="Leandro M Melo"
+WORKDIR /usr/src/app
 
-# Atualiza a imagem com os pacotes
-RUN apt-get update && apt-get upgrade -y
+ENV NODE_ENV production
 
-RUN chmod +x configOC.sh
-RUN ./configOC.sh
-
-RUN apt -y update
-RUN apt -y install nodejs
-RUN apt -y install npm
+# install openshift client on container
+COPY openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz ./
+RUN tar -xvf openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 
 # Just copy the package.json...
 COPY package*.json ./
 
-# so we can cache this layer:
-RUN npm install
-
 COPY . .
 
-RUN rm -rf openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
+ENV PATH="${PATH}:/usr/src/app"
 
-EXPOSE 8080
-
-# command to run on container start
-CMD [ "node", "./bin/www" ]
+RUN echo GIGAAAAAAAAAAAAAAAAAAAAAAAA
