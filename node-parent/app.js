@@ -20,7 +20,7 @@ app.use('/callback', callbackRouter);
 app.use('/procriar', procriarRouter);
 
 
-console.log("uh! papai chegou!");
+console.log("Servidor [parent] ativo!");
 
 module.exports = app;
 
