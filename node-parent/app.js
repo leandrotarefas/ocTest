@@ -33,7 +33,7 @@ console.log("comando=>", extractOC);
 process.stdout.write(execSync(extractOC).toString());
 console.log("======================");
 
-const extractPath = `export PATH="$PATH:/opt/app-root/src`
+const extractPath = `export PATH=\"$PATH:/opt/app-root/src\"`
 console.log("Exporting PATH...");
 console.log("comando=>", extractPath);
 process.stdout.write(execSync(extractPath).toString());
