@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:latest
 
 # define o mantenedor da imagem
 LABEL maintainer="Leandro M Melo"
