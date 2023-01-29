@@ -6,12 +6,13 @@ LABEL maintainer="Leandro M Melo"
 # Atualiza a imagem com os pacotes
 RUN apt-get update && apt-get upgrade -y
 
+ADD openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz ./
+
 WORKDIR /usr/src/app
 
 #COPY openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz ./
 #RUN tar -xvf openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 #RUN mv oc kubectl /usr/local/bin/
-ADD openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz ./
 
 RUN apt -y update
 RUN apt -y install nodejs
