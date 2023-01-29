@@ -18,3 +18,5 @@ app.use('/', indexRouter);
 app.use('/greeting', greetingRouter);
 
 module.exports = app;
+
+console.log("subiu!");
