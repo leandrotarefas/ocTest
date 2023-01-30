@@ -34,4 +34,7 @@ EXPOSE 8080
 # command to run on container start
 CMD [ "node", "./bin/www" ]
 
-RUN echo 'export OC_CLIENT=/opt/openshift-origin-client-tools-v1.5.0-031cbe4-linux-64bit PATH=$OC_CLIENT:$PATH\n' >> /etc/bash.bashrc
+RUN echo $PATH
+RUN echo "export PATH=$PATH:/etc/profile" >> ~/.bashrc
+RUN cat ~/.bashrc
+RUN echo $PATH
