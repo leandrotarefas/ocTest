@@ -29,6 +29,9 @@ RUN npm install
 
 COPY . .
 
+RUN mkdir ./.kube
+RUN chmod -R 666 ./.kube
+
 EXPOSE 8080
 
 user tarefas
