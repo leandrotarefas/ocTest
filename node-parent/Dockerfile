@@ -15,8 +15,6 @@ RUN rm /opt/openshift-origin-client-tools-v1.5.0-031cbe4-linux-64bit.tar.gz
 
 RUN useradd -m tarefas
 
-RUN apt-get update 
-
 WORKDIR /usr/src/app
 
 ENV NODE_ENV production
@@ -29,9 +27,6 @@ RUN npm install
 
 COPY . .
 
-RUN mkdir ./.kube
-RUN chmod -R 666 ./.kube
-
 EXPOSE 8080
 
 user tarefas
@@ -41,5 +36,9 @@ CMD [ "node", "./bin/www" ]
 
 ENV PATH="$PATH:/opt/openshift-origin-client-tools-v1.5.0-031cbe4-linux-64bit"
 RUN echo $PATH
+
+RUN mkdir /usr/src/app/config
+RUN chmod -R 777 /usr/src/app/config
+RUN export KUBECONFIG=/usr/src/app/config
 
 RUN echo finish
