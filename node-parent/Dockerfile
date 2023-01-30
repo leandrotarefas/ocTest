@@ -29,9 +29,9 @@ COPY . .
 
 EXPOSE 8080
 
-RUN mkdir /usr/src/app/config
-RUN chmod -R 777 /usr/src/app/config
-ENV KUBECONFIG="/usr/src/app/config"
+RUN touch /usr/src/app/.kube
+RUN chmod -R 777 /usr/src/app/.kube
+ENV KUBECONFIG="/usr/src/app/.kube"
 
 user tarefas
 
