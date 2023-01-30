@@ -27,17 +27,14 @@ COPY package*.json ./
 # so we can cache this layer:
 RUN npm install
 
-RUN echo $PATH
-ENV PATH="$PATH:/opt/openshift-origin-client-tools-v1.5.0-031cbe4-linux-64bit"
-RUN echo $PATH
-
-RUN echo $PWD
-
 COPY . .
 
 EXPOSE 8080
 
+user tarefas
+
 # command to run on container start
 CMD [ "node", "./bin/www" ]
 
+ENV PATH="$PATH:/opt/openshift-origin-client-tools-v1.5.0-031cbe4-linux-64bit"
 RUN echo $PATH
