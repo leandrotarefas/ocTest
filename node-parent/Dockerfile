@@ -31,6 +31,7 @@ EXPOSE 8080
 
 RUN mkdir /usr/src/app/config
 RUN chmod -R 777 /usr/src/app/config
+ENV KUBECONFIG="/usr/src/app/config"
 
 user tarefas
 
@@ -39,6 +40,6 @@ CMD [ "node", "./bin/www" ]
 
 ENV PATH="$PATH:/opt/openshift-origin-client-tools-v1.5.0-031cbe4-linux-64bit"
 RUN echo $PATH
-RUN export KUBECONFIG=/usr/src/app/config
+
 
 RUN echo finish
