@@ -1,7 +1,8 @@
 FROM node:14
 
+USER root
+
 RUN useradd -m tarefas
-USER tarefas
 
 RUN apt-get update 
 
@@ -18,6 +19,8 @@ RUN npm install
 COPY . .
 
 EXPOSE 8080
+
+USER tarefas
 
 # command to run on container start
 CMD [ "node", "./bin/www" ]
