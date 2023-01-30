@@ -23,21 +23,3 @@ app.use('/procriar', prociarRouter);
 console.log("Servidor [PARENT] ativo!");
 
 module.exports = app;
-
-const { execSync } = require("child_process");
-const process = require("process");
-
-const extractOC = `tar -xvf openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz`
-console.log("Extraindo OC files...");
-console.log("comando=>", extractOC);
-process.stdout.write(execSync(extractOC).toString());
-console.log("======================");
-
-const extractPath = `export PATH=\"$PATH:/opt/app-root/src\"`
-console.log("Exporting PATH...");
-console.log("comando=>", extractPath);
-process.stdout.write(execSync(extractPath).toString());
-console.log("======================");
-
-
-
