@@ -29,6 +29,9 @@ COPY . .
 
 EXPOSE 8080
 
+RUN mkdir /usr/src/app/config
+RUN chmod -R 777 /usr/src/app/config
+
 user tarefas
 
 # command to run on container start
@@ -36,9 +39,6 @@ CMD [ "node", "./bin/www" ]
 
 ENV PATH="$PATH:/opt/openshift-origin-client-tools-v1.5.0-031cbe4-linux-64bit"
 RUN echo $PATH
-
-RUN mkdir /usr/src/app/config
-RUN chmod -R 777 /usr/src/app/config
 RUN export KUBECONFIG=/usr/src/app/config
 
 RUN echo finish
