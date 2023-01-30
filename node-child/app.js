@@ -20,13 +20,12 @@ app.use('/', indexRouter);
 app.use('/greeting', greetingRouter);
 
 
-for(let process of process.env){
-    console.log("process : ", process);
-}
-
-
-
 async function mandarUmSinal() {    
+    
+    for(let process of process.env){
+        console.log("process : ", process);
+    }
+
 
     const PARENT_URL = process.env.PARENT_URL;
 
