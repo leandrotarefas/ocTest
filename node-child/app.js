@@ -20,6 +20,12 @@ app.use('/', indexRouter);
 app.use('/greeting', greetingRouter);
 
 
+for(let process of process.env){
+    console.log("process : ", process);
+}
+
+
+
 async function mandarUmSinal() {    
 
     const PARENT_URL = process.env.PARENT_URL;
@@ -30,8 +36,8 @@ async function mandarUmSinal() {
     }
 
     console.log("=> enviando sinal que nasceu!");
-    let payload = { msg: 'Fala ae mano, eu nasci!' };
-    let res = await axios.post(`http://${PARENT_URL}/callback`, payload);
+    let payload = { msg: "I'm ready!" };
+    let res = await axios.post(`${PARENT_URL}/callback`, payload);
     let data = res.data;
     console.log("Resposta do callback: ",  data);
 }
