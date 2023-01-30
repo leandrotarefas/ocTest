@@ -1,15 +1,5 @@
-FROM ubuntu:20.04
-
-ENV BRANCH 2.2
-ENV RSTUDIO 1.4.1103
-
-ENV DEBIAN_FRONTEND noninteractive
-
-# Install.
-RUN \
-  apt-get update && \
-  apt-get -y dist-upgrade && \
-  apt-get install -y software-properties-common && \
+FROM ubuntu:16.04
+RUN apt-get update 
 
 USER root
 
