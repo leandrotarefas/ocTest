@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var prociarRouter = require('./routes/procriar');
 var callbackRouter = require('./routes/callback');
+var checkRouter = require('./routes/check');
 
 
 var app = express();
@@ -18,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/callback', callbackRouter);
 app.use('/procriar', prociarRouter);
-
+app.use('/check', checkRouter);
 
 console.log("Servidor [PARENT] ativo!");
 
