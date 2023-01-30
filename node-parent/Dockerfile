@@ -27,14 +27,16 @@ COPY package*.json ./
 # so we can cache this layer:
 RUN npm install
 
+RUN echo $PATH
+RUN echo "export PATH=$PATH:/etc/profile" >> ~/.bashrc
+RUN cat ~/.bashrc
+RUN echo $PATH
+
+RUN echo $PWD
+
 COPY . .
 
 EXPOSE 8080
 
 # command to run on container start
 CMD [ "node", "./bin/www" ]
-
-RUN echo $PATH
-RUN echo "export PATH=$PATH:/etc/profile" >> ~/.bashrc
-RUN cat ~/.bashrc
-RUN echo $PATH
