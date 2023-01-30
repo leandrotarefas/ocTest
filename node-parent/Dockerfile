@@ -1,5 +1,8 @@
 FROM node:14
 
+RUN useradd -m tarefas
+USER tarefas
+
 RUN apt-get update 
 
 WORKDIR /usr/src/app
