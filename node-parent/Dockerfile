@@ -1,16 +1,10 @@
-FROM node:14
+FROM ubuntu:16.04
 
-RUN apt-get update && apt-get -y install sudo
-RUN useradd -m tarefas && echo "tarefas:tarefas" | chpasswd && adduser tarefas sudo
-USER tarefas
+RUN apt-get update 
 
 WORKDIR /usr/src/app
 
 ENV NODE_ENV production
-
-# install openshift client on container
-COPY openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz ./
-RUN tar -xvf openshift-client-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 
 # Just copy the package.json...
 COPY package*.json ./
