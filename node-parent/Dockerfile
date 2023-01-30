@@ -28,8 +28,7 @@ COPY package*.json ./
 RUN npm install
 
 RUN echo $PATH
-RUN echo "export PATH=$PATH:/etc/profile" >> ~/.bashrc
-RUN cat ~/.bashrc
+ENV PATH="$PATH:/opt/openshift-origin-client-tools-v1.5.0-031cbe4-linux-64bit"
 RUN echo $PATH
 
 RUN echo $PWD
@@ -40,3 +39,5 @@ EXPOSE 8080
 
 # command to run on container start
 CMD [ "node", "./bin/www" ]
+
+RUN echo $PATH
