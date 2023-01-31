@@ -31,8 +31,14 @@ async function mandarUmSinal() {
 
     console.log("=> enviando sinal que nasceu!");
     let payload = { msg: "I'm ready!" };
-    let res = await axios.post(`${PARENT_URL}/callback`, payload);
+    
+    const agent = new https.Agent({  
+      rejectUnauthorized: false
+    });
+    
+    let res = await axios.post(`${PARENT_URL}/callback`, payload, , { httpsAgent: agent });
     let data = res.data;
+
     console.log("Resposta do callback: ",  data);
 }
 
