@@ -35,7 +35,6 @@ Endpoints:
           curl --location --request POST '{parent_url}/create' \
           --header 'Content-Type: application/json' \
           --data-raw '{
-              "token": "{oc_token}",
               "server":"{oc_server}",
               "app_name":"mark0",
               "parent_url" : "{parent_url}"
@@ -47,7 +46,7 @@ Endpoints:
           curl --location --request POST '{parent_url}/remove' \
           --header 'Content-Type: application/json' \
           --data-raw '{
-              "token": "{oc_token}",
+              "server":"{oc_server}",
               "app_name":"mark0"              
           }'
 
