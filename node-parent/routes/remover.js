@@ -5,14 +5,13 @@ const process = require("process");
 
 router.delete('/', function(req, res, next) {
 
-   const {app_name} = req.body;
+   const {app_name, server} = req.body;
    
-    const comandoDeLogin = `oc login --username=admin --password=admin --insecure-skip-tls-verify`
+    const comandoDeLogin = `oc login --username=admin --password=admin --server=${server} --insecure-skip-tls-verify`
     console.log("Fazendo login via OC...");
     console.log("comando=>", comandoDeLogin);
     process.stdout.write(execSync(comandoDeLogin).toString());
     console.log("======================");
-   
        
     const items = ["deployment","service","deployments.apps","buildconfigs.build.openshift.io","route"]
     
