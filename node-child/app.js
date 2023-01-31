@@ -29,13 +29,14 @@ async function mandarUmSinal() {
         return;
     }
 
-    console.log("=> enviando sinal que nasceu!");
+    console.log("=> Sending ACK!");
+    
     let payload = { msg: "I'm ready!" };
     
     let res = await axios.post(`${PARENT_URL}/callback`, payload);
     let data = res.data;
 
-    console.log("Resposta do callback: ",  data);
+    console.log("Callback response: ",  data);
 }
 
 module.exports = app;
