@@ -36,7 +36,7 @@ async function mandarUmSinal() {
       rejectUnauthorized: false
     });
     
-    let res = await axios.post(`${PARENT_URL}/callback`, payload, , { httpsAgent: agent });
+    let res = await axios.post(`${PARENT_URL}/callback`, payload, { httpsAgent: agent });
     let data = res.data;
 
     console.log("Resposta do callback: ",  data);
