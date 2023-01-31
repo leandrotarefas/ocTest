@@ -7,7 +7,7 @@ var logger = require('morgan');
 var prociarRouter = require('./routes/procriar');
 var callbackRouter = require('./routes/callback');
 var checkRouter = require('./routes/check');
-
+var removerRouter = require('./routes/remover');
 
 var app = express();
 
@@ -18,9 +18,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/callback', callbackRouter);
-app.use('/procriar', prociarRouter);
+app.use('/create', prociarRouter);
 app.use('/check', checkRouter);
+app.use('/remove', removerRouter);
 
-console.log("Servidor [PARENT] ativo!");
+console.log("Server [PARENT] activated!");
 
 module.exports = app;
