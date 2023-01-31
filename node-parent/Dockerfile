@@ -40,7 +40,7 @@ ENV KUBECONFIG="/usr/src/app/.kube"
 
 CMD [ "node", "./bin/www" ]
 
-ENV PATH="$PATH:/opt/openshift-client-linux:/opt/openshift-install-linux"
+ENV PATH="$PATH:/opt"
 
 RUN echo $PATH
 
