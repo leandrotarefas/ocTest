@@ -1,17 +1,32 @@
+const express = require('express')
 const { Kafka } = require('kafkajs')
 
+const app = express()
 const kafka = new Kafka({
   clientId: 'my-app',
   brokers: ['localhost:9092'],
-  connectionTimeout: 3000, // opcional, define o tempo de espera para se conectar ao Kafka
-  requestTimeout: 25000 // opcional, define o tempo de espera para as operações com o Kafka
 })
 
-const consumer = kafka.consumer({ groupId: 'test-group' })
+app.use(express.json())
+
+app.post('/messages', async (req, res) => {
+  const producer = kafka.producer()
+
+  await producer.connect()
+  await producer.send({
+    topic: 'test-topic',
+    messages: [{ value: req.body.message }],
+  })
+  await producer.disconnect()
+
+  res.json({ message: 'Mensagem enviada com sucesso!' })
+})
 
 async function run() {
+  const consumer = kafka.consumer({ groupId: 'test-group' })
+
   await consumer.connect()
-  await consumer.subscribe({ topic: 'test-topic' })
+  await consumer.subscribe({ topic: 'test-topic', fromBeginning: true })
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
@@ -24,18 +39,6 @@ async function run() {
 
 run().catch(console.error)
 
-const producer = kafka.producer()
-
-async function sendMessages() {
-  await producer.connect()
-  await producer.send({
-    topic: 'test-topic',
-    messages: [
-      { value: 'Hello Kafka!' },
-    ],
-  })
-
-  await producer.disconnect()
-}
-
-sendMessages().catch(console.error)
+app.listen(3000, () => {
+  console.log('Servidor escutando na porta 3000')
+})
