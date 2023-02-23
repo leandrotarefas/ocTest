@@ -23,3 +23,9 @@ async function criarAplicacao(name) {
 }
 
 module.exports = { criarAplicacao };
+
+
+
+const result = Array.from(myMap.entries())
+  .map(([key, value]) => `-e ${key}=${value} `)
+  .join("");
