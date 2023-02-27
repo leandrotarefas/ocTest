@@ -91,5 +91,8 @@ const start = async () => {
 }
 
 console.log("Pod criado!");
+ setInterval(() => {
+console.log("ok!");
+            
 
-start();
+        }, 50000);
