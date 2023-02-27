@@ -35,6 +35,7 @@ const stop = (msg) => {
 }
 
 const start = async () => {
+    /*
 
     //login
     const [ocLoginError, ocLogin] = login();
@@ -86,7 +87,7 @@ const start = async () => {
         }, 5000);
     }
 
-
+*/
 }
 
 console.log("Pod criado!");
