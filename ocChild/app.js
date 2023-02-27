@@ -9,8 +9,8 @@ const tryCatch = function tryCatch(promise) {
 };
 
 const login = async () => {
-    const username = "chumbado?";
-    const password = "chumbado?";
+    const username = process.env.USERNAME;
+    const password = process.env.PASSWORD;
     const ocLoginCommand = `oc login --insecure-skip-tls-verify=true -u ${username} -p ${password}`;
 
     console.log("Fazendo login via OC...");
@@ -18,8 +18,7 @@ const login = async () => {
     return ocLogin;
 }
 
-const kill = async (process, item) => {
-    const appName = process;
+const kill = async (appName, item) => {
     const ocRemoveCommand = `oc delete ${item} ${appName}`;
 
     console.log(`Removendo ${item}`);
@@ -55,6 +54,8 @@ const start = async () => {
         //aguarda 5 segundos
         setTimeout(() => {
 
+            const appName = process.env.APP_NAME;
+
             console.log("Encerrando o Pod...");
 
             //lista de itens para encerrar
@@ -65,7 +66,7 @@ const start = async () => {
             //encerrar um a um
             for (let item of items) {
 
-                const [ocRemovedError, ocRemoved] = kill("processChumbado?", item);
+                const [ocRemovedError, ocRemoved] = kill(appName, item);
                 if (ocRemovedError) {
                     statusOk = false;
                     //finaliza a aplicacao
