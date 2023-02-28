@@ -43,7 +43,7 @@ const start = async () => {
     const password = process.env.PASSWORD;
 
     //login
-    const [ocLoginError, ocLogin] = login(username, password);
+    const [ocLoginError, ocLogin] = await login(username, password);
 
     //erro no login, sai da aplicacao
     if (ocLoginError) {
