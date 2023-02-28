@@ -21,11 +21,9 @@ const login = async (username, password) => {
     return ocLogin;
 }
 
-const kill = async (appName, item) => {
-    const ocRemoveCommand = `oc delete ${item} ${appName}`;
+const kill = async (appName) => {
+    const ocRemoveCommand = `oc delete all -l app=${appName}`;
     console.log(`executando comando => ${ocRemoveCommand}`);
-
-    console.log(`Removendo ${item}`);
     const ocRemove = await tryCatch(execPromise(ocRemoveCommand));
     console.log(ocRemove);
 }
@@ -56,33 +54,22 @@ const start = async () => {
     //login bem sucedido
     if (ocLogin) {
 
-        console.log("Login ok!");
+        console.log("Login ok! aguarde 20 segundos...");
 
         //aguarda 5 segundos
-        setTimeout(() => {
+        setTimeout(async () => {
 
             const appName = process.env.APP_NAME;
 
             console.log("Encerrando o Pod...");
 
-            //lista de itens para encerrar
-            const items = ["deployment", "service", "deployments.apps", "buildconfigs.build.openshift.io", "route"];
-
-            let statusOk = true;
-
+            await kill(appName);
             
-            for (let item of items) {
-
-                //encerrar item do Openshift
-                kill(appName, item);
-
-            }
-
             //se tudo certo finaliza a aplicacao            
             stop("Processamento conluido com sucesso!");
             
 
-        }, 5000);
+        }, 20000);
     }
 
 
