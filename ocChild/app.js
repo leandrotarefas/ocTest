@@ -38,7 +38,7 @@ const start = async () => {
     const password = process.env.PASSWORD;
 
     //login
-    const ocLogin = login(username, password);
+    const ocLogin = await login(username, password);
 
     console.log(ocLogin)
 
