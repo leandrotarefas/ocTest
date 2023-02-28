@@ -67,7 +67,7 @@ const start = async () => {
             await kill(appName);
             
             //se tudo certo finaliza a aplicacao            
-            stop("Processamento conluido com sucesso!");
+           // stop("Processamento conluido com sucesso!");
             
 
         }, 20000);
