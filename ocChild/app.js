@@ -9,7 +9,14 @@ const tryCatch = function tryCatch(promise) {
 };
 
 const login = async (username, password) => {
-    const ocLoginCommand = `oc login --insecure-skip-tls-verify=true -u ${username} -p ${password}`;
+    
+    let ocLoginCommand = `oc login --insecure-skip-tls-verify=true -u ${username} -p ${password}`;
+    
+    const SERVER = process.env.SERVER;
+    if(SERVER){
+        ocLoginCommand += ` --server=${SERVER}`;
+    }
+    
     console.log("Fazendo login via OC...");
     const ocLogin = await tryCatch(execPromise(ocLoginCommand));
     return ocLogin;
