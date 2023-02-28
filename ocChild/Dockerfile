@@ -37,7 +37,7 @@ RUN chmod -R 777 /usr/src/app/.kube
 ENV KUBECONFIG="/usr/src/app/.kube"
 
 # command to run on container start
-CMD [ "node", "app0.js" ]
+CMD [ "node", "app.js" ]
 
 #add oc cli to path
 ENV PATH="$PATH:/opt"
