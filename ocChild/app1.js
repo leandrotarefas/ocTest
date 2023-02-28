@@ -12,6 +12,7 @@ const login = async (username, password) => {
     
     let ocLoginCommand = `oc login --insecure-skip-tls-verify=true -u ${username} -p ${password}`;
 
+    const server = process.env.SERVER;
     if (server) {
         ocLoginCommand += ` --server=${server}`;
     }
