@@ -38,47 +38,9 @@ const start = async () => {
     const password = process.env.PASSWORD;
 
     //login
-    const [ocLoginError, ocLogin] = login(username, password);
+    const ocLogin = login(username, password);
 
-    //erro no login, sai da aplicacao
-    if (ocLoginError) {
-        //finaliza a aplicacao
-        stop(ocLoginError);
-        return;
-    }
-
-    //login bem sucedido
-    if (ocLogin) {
-
-        console.log("Login ok!");
-
-        //aguarda 5 segundos
-        setTimeout(() => {
-
-            const appName = process.env.APP_NAME;
-
-            console.log("Encerrando o Pod...");
-
-            //lista de itens para encerrar
-            const items = ["deployment", "service", "deployments.apps", "buildconfigs.build.openshift.io", "route"];
-
-            let statusOk = true;
-
-            
-            for (let item of items) {
-
-                //encerrar item do Openshift
-                kill(appName, item);
-
-            }
-
-            //se tudo certo finaliza a aplicacao            
-            stop("Processamento conluido com sucesso!");
-            
-
-        }, 5000);
-    }
-
+    console.log(ocLogin)
 
 }
 
