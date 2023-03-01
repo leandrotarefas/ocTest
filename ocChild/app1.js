@@ -23,7 +23,7 @@ const login = async (username, password) => {
 }
 
 const kill = async (appName) => {
-    const ocRemoveCommand = `oc delete all -l app=${appName}`;
+    const ocRemoveCommand = `oc delete all -l app=${appName} --no-prune`;
     console.log(`executando comando => ${ocRemoveCommand}`);
     const ocRemove = await tryCatch(execPromise(ocRemoveCommand));
     console.log(ocRemove);
